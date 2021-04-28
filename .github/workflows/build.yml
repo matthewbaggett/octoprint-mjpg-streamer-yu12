@@ -1,5 +1,10 @@
 name: Build Octoprint with yu12 mjpeg_streamer support
-on: [push]
+
+on:
+  push:
+  schedule:
+    - cron: '0 4 * * WED'
+
 jobs:
   build:
     name: "Build"
