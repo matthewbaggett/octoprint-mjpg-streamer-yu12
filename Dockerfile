@@ -1,4 +1,4 @@
-FROM octoprint/octoprint AS builder
+FROM matthewbaggett/octoprint AS builder
 WORKDIR /build
 RUN apt update -q && \
     apt install -yq unzip subversion
@@ -8,6 +8,6 @@ RUN cd mjpg-streamer-yu12-master/mjpg-streamer && \
     make && \
     ls -lah
 
-FROM octoprint/octoprint AS result
+FROM matthewbaggett/octoprint AS result
 COPY --from=builder /build/mjpg-streamer-yu12-master/mjpg-streamer/mjpg_streamer /usr/local/bin/mjpg_streamer
 COPY --from=builder /build/mjpg-streamer-yu12-master/mjpg-streamer/*.so /usr/local/lib/mjpg-streamer/
